@@ -1,2 +1,4 @@
 # Kedit
-Simple Text Editor 
+Simple Text Editor made with Kivy in 2017
+
+
