@@ -1,0 +1,88 @@
+#:kivy 1.10.0
+<But@Button>:
+    font_size : 16
+    size_hint : (0.25,0.05)
+<Screen>:
+    cinput: cinput
+    StackLayout:
+        
+        But:
+            id : open
+            text:"Open"
+            on_press: root.open_popup()
+        But:
+            id:saveas
+            text:"Save As"
+            on_press:root.save_popup()     
+        But:
+            id: save
+            text:"Save"
+            on_press : root.saving(cinput.text)
+        But:
+            id: run
+            text:"Run(Python)"
+            on_press: root.execute(cinput.text)   
+        CodeInput:
+            id : cinput
+            font_size : 14
+            multiline: True
+            text: ''
+            
+<OpenInterface>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+            path : root.defpath 
+        BoxLayout:
+            size_hint : (0.25,0.05)
+            height: 30
+            Button:
+                text: "Cancel"
+                on_press: root.cancel()
+            Button:
+                text: "Load"
+                on_press: root.load(filechooser.path, filechooser.selection)       
+<SaveInterface>:
+    
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser2
+        TextInput:
+            id: text_input2
+            size_hint_y: None
+            height: 30
+            multiline: False
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_press: root.cancel()
+
+            Button:
+                text: "Save"
+                on_press: root.save(filechooser.path, text_input2.text)
+<ErrorInterface>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        Label:
+            text: root.error_string
+            font_size : 18
+        Button:
+            text: "Close"
+            font_size : 18
+            size_hint : (0.5,0.25)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            on_press: root.close() 
+
+
+    
