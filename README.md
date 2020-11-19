@@ -1,0 +1,2 @@
+# Kedit
+Simple Text Editor 
